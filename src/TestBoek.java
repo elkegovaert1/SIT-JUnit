@@ -4,8 +4,6 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-//Je bent al goed op weg. Ik mis wel nog testen op null en probeer ook eens of fouten worden opgeworpen.
-
 class TestBoek {
 
     @Test
@@ -44,14 +42,9 @@ class TestBoek {
     }
 
     @Test
-    void testGetAuteursNull() {
-
-    }
-
-    @Test
     void testGetTitel() {
         Reeks r = new Reeks("Poznanski");
-        Boek b = new Boek("Erebos",r , "BOEK");
+        Boek b = new Boek("Erebos", r, "BOEK");
         String titel = b.getTitel();
         String verwacht = "Erebos";
         Assertions.assertEquals(verwacht, titel);
@@ -75,6 +68,10 @@ class TestBoek {
         b.setReeks(r);
         Assertions.assertEquals(r, b.getReeks());
         Assertions.assertNotEquals(null, b.getReeks());
+
+        //null
+        b.setReeks(null);
+        Assertions.assertEquals(null, b.getReeks());
     }
 
     @Test
@@ -97,6 +94,9 @@ class TestBoek {
         b.addAuteur(a1);
         b.addAuteur(a2);
         Assertions.assertTrue(b.heeftAuteur(a1));
+
+        //fout
+        Assertions.assertFalse(b.heeftTitel("JK Rowling"));
     }
 
     @Test
@@ -142,6 +142,12 @@ class TestBoek {
         Boek bn2 = new Boek(null, null, null);
         Assertions.assertTrue(bn1.hashCode() == bn2.hashCode());
         Assertions.assertNotEquals((Double) null, b1.hashCode());
+
+        //fout
+        Boek bf1 = null;
+        Assertions.assertThrows(NullPointerException.class,
+                () -> bf1.hashCode());
+
     }
 
     @Test
@@ -152,6 +158,17 @@ class TestBoek {
         Assertions.assertTrue(b1.equals(b2) && b2.equals(b1));
         Assertions.assertNotEquals(null, b1.equals(b2));
         Assertions.assertNotEquals(null, b2.equals(b1));
+
+        //null
+        Boek bn1 = new Boek(null, r, null);
+        Boek bn2 = new Boek(null, r, null);
+        Assertions.assertTrue(bn1.equals(bn2) && bn2.equals(bn1));
+
+        //fout
+        Boek bf1 = null;
+        Boek bf2 = null;
+        Assertions.assertThrows(NullPointerException.class,
+                () -> bf1.equals(bf2));
     }
 
 }
