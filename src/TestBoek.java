@@ -9,14 +9,14 @@ class TestBoek {
     @Test
     void testGetISBN() {
         Boek b = new Boek("Erebos", "BOEK");
-        String ISBN = b.getISBN();
+        String isbn = b.getISBN();
         String verwacht = "BOEK";
-        Assertions.assertEquals(verwacht, ISBN);
+        Assertions.assertEquals(verwacht, isbn);
 
         //null
         Boek bn = new Boek(null, null);
-        String ISBNn = bn.getISBN();
-        Assertions.assertNull(ISBNn);
+        String isbnNull = bn.getISBN();
+        Assertions.assertNull(isbnNull);
     }
 
     @Test
@@ -127,6 +127,10 @@ class TestBoek {
         String verwacht = "Boek [ISBN=BOEK, auteurs=[Bob]]Medium [titel=Harry Potter zingt, reeks=Harry Potter]";
         Assertions.assertEquals(verwacht, toString);
         Assertions.assertNotNull(toString);
+
+        //fout
+        Boek bf = null;
+        Assertions.assertThrows(NullPointerException.class, () -> bf.toString());
     }
 
     @Test
@@ -145,8 +149,7 @@ class TestBoek {
 
         //fout
         Boek bf1 = null;
-        Assertions.assertThrows(NullPointerException.class,
-                () -> bf1.hashCode());
+        Assertions.assertThrows(NullPointerException.class, () -> bf1.hashCode());
 
     }
 
@@ -167,8 +170,7 @@ class TestBoek {
         //fout
         Boek bf1 = null;
         Boek bf2 = null;
-        Assertions.assertThrows(NullPointerException.class,
-                () -> bf1.equals(bf2));
+        Assertions.assertThrows(NullPointerException.class, () -> bf1.equals(bf2));
     }
 
 }
