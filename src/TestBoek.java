@@ -159,13 +159,13 @@ class TestBoek {
         Boek b1 = new Boek("Karel De Grootte", r, "BOEKK");
         Boek b2 = new Boek("Karel De Grootte", r, "BOEKK");
         Boek b3 = new Boek("Karel De Kleine", r, "BOEK");
-        Assertions.assertTrue(b1.equals(b2) && b2.equals(b1));
+        Assertions.assertEquals(b1.equals(b2), b2.equals(b1));
         Assertions.assertFalse(b1.equals(b3));
 
         //null
         Boek bn1 = new Boek(null, r, null);
         Boek bn2 = new Boek(null, r, null);
-        Assertions.assertTrue(bn1.equals(bn2) && bn2.equals(bn1));
+        Assertions.assertEquals(bn1.equals(bn2), bn2.equals(bn1));
 
         //fout
         Boek bf1 = null;
