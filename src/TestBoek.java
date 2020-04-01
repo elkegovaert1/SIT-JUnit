@@ -16,7 +16,7 @@ class TestBoek {
         //null
         Boek bn = new Boek(null, null);
         String ISBNn = bn.getISBN();
-        Assertions.assertEquals(null, ISBNn);
+        Assertions.assertNull(ISBNn);
     }
 
     @Test
@@ -67,11 +67,11 @@ class TestBoek {
         Boek b = new Boek("Alabama", "BOEKSKE");
         b.setReeks(r);
         Assertions.assertEquals(r, b.getReeks());
-        Assertions.assertNotEquals(null, b.getReeks());
+        Assertions.assertNotNull(b.getReeks());
 
         //null
         b.setReeks(null);
-        Assertions.assertEquals(null, b.getReeks());
+        Assertions.assertNull(b.getReeks());
     }
 
     @Test
@@ -83,7 +83,7 @@ class TestBoek {
         List<Auteur> verwacht = new ArrayList<>();
         verwacht.add(a);
         Assertions.assertEquals(verwacht, Auteurs);
-        Assertions.assertNotEquals(null, Auteurs);
+        Assertions.assertNotNull(Auteurs);
     }
 
     @Test
@@ -126,7 +126,7 @@ class TestBoek {
         String toString = b.toString();
         String verwacht = "Boek [ISBN=BOEK, auteurs=[Bob]]Medium [titel=Harry Potter zingt, reeks=Harry Potter]";
         Assertions.assertEquals(verwacht, toString);
-        Assertions.assertNotEquals(null, toString);
+        Assertions.assertNotNull(toString);
     }
 
     @Test
@@ -134,14 +134,14 @@ class TestBoek {
         Reeks r = new Reeks("Karelserie");
         Boek b1 = new Boek("Karel De Grootte", r, "BOEKK");
         Boek b2 = new Boek("Karel De Grootte", r, "BOEKK");
-        Assertions.assertTrue(b1.hashCode() == b2.hashCode());
-        Assertions.assertNotEquals((Double) null, b1.hashCode());
+        Assertions.assertEquals(b1.hashCode(), b2.hashCode());
+        Assertions.assertNotNull(b1.hashCode());
 
         //test met null
         Boek bn1 = new Boek(null, null, null);
         Boek bn2 = new Boek(null, null, null);
-        Assertions.assertTrue(bn1.hashCode() == bn2.hashCode());
-        Assertions.assertNotEquals((Double) null, b1.hashCode());
+        Assertions.assertEquals(bn1.hashCode(), bn2.hashCode());
+        Assertions.assertNotNull(b1.hashCode());
 
         //fout
         Boek bf1 = null;
@@ -155,9 +155,9 @@ class TestBoek {
         Reeks r = new Reeks("Karelserie");
         Boek b1 = new Boek("Karel De Grootte", r, "BOEKK");
         Boek b2 = new Boek("Karel De Grootte", r, "BOEKK");
+        Boek b3 = new Boek("Karel De Kleine", r, "BOEK");
         Assertions.assertTrue(b1.equals(b2) && b2.equals(b1));
-        Assertions.assertNotEquals(null, b1.equals(b2));
-        Assertions.assertNotEquals(null, b2.equals(b1));
+        Assertions.assertFalse(b1.equals(b3));
 
         //null
         Boek bn1 = new Boek(null, r, null);
