@@ -79,11 +79,11 @@ class TestBoek {
         Boek b = new Boek("Erebos", "BOEK");
         Auteur a = new Auteur();
         b.addAuteur(a);
-        List<Auteur> Auteurs = b.getAuteurs();
+        List<Auteur> auteurs = b.getAuteurs();
         List<Auteur> verwacht = new ArrayList<>();
         verwacht.add(a);
-        Assertions.assertEquals(verwacht, Auteurs);
-        Assertions.assertNotNull(Auteurs);
+        Assertions.assertEquals(verwacht, auteurs);
+        Assertions.assertNotNull(auteurs);
     }
 
     @Test
